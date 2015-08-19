@@ -7,8 +7,8 @@
 
 import ctypes
 import sys
-
-from demoEngine import MainEngine
+import Pyro.core
+#from demoEngine import MainEngine
 from demoUi import *
 
 #----------------------------------------------------------------------
@@ -18,12 +18,13 @@ def main():
     
     app = QtGui.QApplication(sys.argv)
     app.setWindowIcon(QtGui.QIcon('vnpy.ico'))
-    
-    me = MainEngine()
-    
-    mw = MainWindow(me.ee, me)
+    url='PYROLOC://localhost:9000'
+    me=Pyro.core.getProxyForURI(url+"/mainEn")
+    ee=Pyro.core.getProxyForURI(url+"/eventEn")
+     
+    mw = MainWindow(ee, me)
     mw.showMaximized()
-    
+     
     sys.exit(app.exec_())
 
 

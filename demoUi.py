@@ -19,6 +19,7 @@ import sip
 from PyQt4 import QtCore, QtGui
 
 from eventEngine import *
+from eventType import *
 
 
 
